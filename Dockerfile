@@ -13,6 +13,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
         libsm6 \
         libxext6 \
         libxrender1 \
+        git \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Python dependencies first (better layer caching)
@@ -27,5 +28,4 @@ COPY . .
 EXPOSE 8000
 
 # Assumes main.py defines: app = FastAPI()
-# If your FastAPI instance has a different variable name, update "main:app" below
 CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
